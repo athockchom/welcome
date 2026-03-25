@@ -1,0 +1,625 @@
+/* ================================================
+   Warm Educator Theme — Anant Singh Thockchom
+   V2: Progressive disclosure, less text, more interaction
+   Palette: Cream + Sage Teal + Warm Orange
+   Typography: Playfair Display + Source Sans Pro
+   ================================================ */
+
+/* -- Custom Properties (Light Mode) -- */
+:root {
+  --color-cream: #E8DCC8;
+  --color-cream-light: #F5F0E6;
+  --color-teal: #4A7C7E;
+  --color-teal-dark: #3A6264;
+  --color-teal-light: #6A9C9E;
+  --color-orange: #E67E22;
+  --color-orange-light: #F39C4D;
+  --color-charcoal: #2C3E50;
+  --color-charcoal-light: #4A5568;
+  --color-white: #FDFBF7;
+  --color-border: #D5C9B3;
+
+  /* Pico overrides */
+  --pico-font-family: 'Source Sans Pro', sans-serif;
+  --pico-font-size: 18px;
+  --pico-line-height: 1.7;
+  --pico-color: var(--color-charcoal);
+  --pico-background-color: var(--color-white);
+  --pico-primary: var(--color-teal);
+  --pico-primary-hover: var(--color-teal-dark);
+  --pico-text-decoration: none;
+}
+
+/* -- Dark Mode -- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-cream: #2A2520;
+    --color-cream-light: #342E28;
+    --color-teal: #6AADAF;
+    --color-teal-dark: #7ABDBF;
+    --color-teal-light: #5A9D9F;
+    --color-orange: #F39C4D;
+    --color-orange-light: #E67E22;
+    --color-charcoal: #E8DCC8;
+    --color-charcoal-light: #C5B9A5;
+    --color-white: #1A1612;
+    --color-border: #3D362E;
+
+    --pico-color: var(--color-charcoal);
+    --pico-background-color: var(--color-white);
+    --pico-primary: var(--color-teal);
+    --pico-primary-hover: var(--color-teal-dark);
+  }
+}
+
+/* -- Smooth Scroll + Anchor Offset -- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+section[id] {
+  scroll-margin-top: 70px;
+}
+
+/* -- Typography -- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--color-charcoal);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 { font-size: 2rem; line-height: 1.25; margin-top: 0; }
+h3 { font-size: 1.3rem; line-height: 1.35; }
+
+p, li, a, span, label, summary {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--color-charcoal);
+}
+
+a {
+  color: var(--color-teal);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-teal-dark);
+  border-bottom-color: var(--color-teal);
+}
+
+/* -- Layout -- */
+body {
+  background-color: var(--color-white);
+  color: var(--color-charcoal);
+}
+
+.container {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+/* Tighten Pico defaults */
+section h2 {
+  margin-bottom: 1.25rem;
+}
+
+section p:last-child {
+  margin-bottom: 0;
+}
+
+/* -- Navigation -- */
+nav.site-nav {
+  position: sticky;
+  top: 0;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 0.75rem 0;
+}
+
+nav.site-nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.site-nav .nav-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-charcoal);
+  border-bottom: none;
+}
+
+nav.site-nav .nav-name:hover {
+  border-bottom: none;
+  color: var(--color-teal);
+}
+
+nav.site-nav .nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav.site-nav .nav-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-charcoal-light);
+  border-bottom: none;
+}
+
+nav.site-nav .nav-links a:hover {
+  color: var(--color-teal);
+  border-bottom: none;
+}
+
+/* -- Hero Section (no name, hook-focused) -- */
+.hero {
+  padding: 4rem 0 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero .title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+
+.hero .hook {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.3;
+}
+
+.hero .cta-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* -- Buttons -- */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  border-bottom: none;
+}
+
+.btn:hover {
+  border-bottom: none;
+}
+
+.btn-primary {
+  background: var(--color-teal);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-teal-dark);
+  color: var(--color-white);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-teal);
+  border: 2px solid var(--color-teal);
+}
+
+.btn-outline:hover {
+  background: var(--color-teal);
+  color: var(--color-white);
+}
+
+/* -- My Story Section (photo + text side by side) -- */
+.story-layout {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.story-photo {
+  flex-shrink: 0;
+}
+
+.headshot {
+  width: 280px;
+  height: 320px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 3px solid var(--color-teal);
+}
+
+.story-content {
+  flex: 1;
+}
+
+.story-content h2 {
+  margin-bottom: 1rem;
+}
+
+.story-content p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+.philosophy-box {
+  background: var(--color-cream-light);
+  border-left: 4px solid var(--color-orange);
+  padding: 1.25rem 1.75rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.philosophy-box p {
+  margin: 0;
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+/* -- Strengths -- */
+.strengths {
+  display: flex;
+  gap: 1.25rem;
+  margin: 1.5rem 0 0;
+  flex-wrap: wrap;
+}
+
+.strength-card {
+  flex: 1;
+  min-width: 200px;
+  background: var(--color-cream-light);
+  padding: 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.strength-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.strength-card h4 {
+  color: var(--color-orange);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.strength-card p {
+  font-size: 0.88rem;
+  color: var(--color-charcoal-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* -- Case Studies (Expandable Cards) -- */
+.case-study-card {
+  background: var(--color-cream-light);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.case-study-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.case-study-card summary {
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  list-style: none;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Kill all browser default disclosure markers */
+.case-study-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.case-study-card summary::marker {
+  display: none;
+  content: '';
+}
+
+details.case-study-card > summary {
+  list-style: none;
+}
+
+.case-study-card summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-teal);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.case-study-card[open] summary::after {
+  content: '\2212';
+}
+
+.case-summary h3 {
+  color: var(--color-teal);
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.case-oneliner {
+  font-size: 0.95rem;
+  color: var(--color-charcoal-light);
+  margin: 0;
+}
+
+.case-study-expanded {
+  padding: 0 2rem 2rem;
+}
+
+.case-study-detail {
+  margin-bottom: 1.25rem;
+}
+
+.case-study-detail:last-child {
+  margin-bottom: 0;
+}
+
+.case-study-detail strong {
+  color: var(--color-orange);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.case-study-detail p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.metric-highlight {
+  display: inline-block;
+  background: var(--color-teal);
+  color: var(--color-white);
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* -- Timeline -- */
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.15rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-teal);
+  border: 3px solid var(--color-white);
+  transition: transform 0.2s ease;
+}
+
+.timeline-item.current::before {
+  background: var(--color-orange);
+  width: 14px;
+  height: 14px;
+  left: -2.22rem;
+}
+
+.timeline-item:hover::before {
+  transform: scale(1.3);
+}
+
+.timeline-item .company {
+  font-size: 0.8rem;
+  color: var(--color-teal);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timeline-item h4 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  margin: 0.1rem 0;
+}
+
+.timeline-item p {
+  font-size: 0.88rem;
+  color: var(--color-charcoal-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* -- Skills Grid -- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.skill-category {
+  background: var(--color-cream-light);
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-2px);
+}
+
+.skill-category h4 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-teal);
+  margin-bottom: 0.5rem;
+}
+
+.skill-category p {
+  font-size: 0.88rem;
+  color: var(--color-charcoal-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* -- Contact Section -- */
+.contact-section {
+  text-align: center;
+}
+
+.contact-section .cta-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--color-charcoal);
+  margin-bottom: 1.5rem;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* -- Footer -- */
+footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.8rem;
+  color: var(--color-charcoal-light);
+}
+
+/* -- Responsive -- */
+@media (max-width: 768px) {
+  .hero .hook { font-size: 1.8rem; }
+  h2 { font-size: 1.6rem; }
+
+  .hero { padding: 3rem 0 2.5rem; }
+  section { padding: 2.5rem 0; }
+
+  .story-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .headshot {
+    width: 220px;
+    height: 260px;
+  }
+
+  .case-study-card summary { padding: 1.25rem 1.5rem; }
+  .case-study-expanded { padding: 0 1.5rem 1.5rem; }
+
+  .strengths { flex-direction: column; }
+
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+
+  nav.site-nav .nav-links { gap: 1rem; }
+  nav.site-nav .nav-links a { font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .hero .hook { font-size: 1.5rem; }
+
+  .headshot {
+    width: 180px;
+    height: 210px;
+  }
+
+  .cta-group, .contact-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav.site-nav .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .case-study-card summary { padding: 1rem 1.25rem; }
+  .case-study-expanded { padding: 0 1.25rem 1.25rem; }
+}
