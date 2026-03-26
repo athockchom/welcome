@@ -62,10 +62,6 @@ html {
   html { scroll-behavior: auto; }
 }
 
-section[id] {
-  scroll-margin-top: 70px;
-}
-
 /* -- Typography -- */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', Georgia, serif;
@@ -77,10 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 h2 { font-size: 2rem; line-height: 1.25; margin-top: 0; }
 h3 { font-size: 1.3rem; line-height: 1.35; }
 
-p, li, a, span, label, summary {
-  font-family: 'Source Sans Pro', sans-serif;
-  color: var(--color-charcoal);
-}
+/* font-family inherited from --pico-font-family; color from body */
 
 a {
   color: var(--color-teal);
@@ -95,10 +88,7 @@ a:hover {
 }
 
 /* -- Layout -- */
-body {
-  background-color: var(--color-white);
-  color: var(--color-charcoal);
-}
+/* body bg/color set via --pico-background-color and --pico-color */
 
 .container {
   max-width: 840px;
@@ -217,14 +207,9 @@ nav.site-nav .nav-links a:hover {
   font-weight: 600;
   font-size: 0.95rem;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   border: none;
   cursor: pointer;
-  border-bottom: none;
-}
-
-.btn:hover {
-  border-bottom: none;
 }
 
 .btn-primary {
@@ -286,20 +271,6 @@ nav.site-nav .nav-links a:hover {
 .highlight {
   color: var(--color-teal);
   font-weight: 600;
-}
-
-.philosophy-box {
-  background: var(--color-cream-light);
-  border-left: 4px solid var(--color-orange);
-  padding: 1.25rem 1.75rem;
-  margin: 1.5rem 0;
-  border-radius: 0 8px 8px 0;
-}
-
-.philosophy-box p {
-  margin: 0;
-  font-style: italic;
-  font-size: 1.05rem;
 }
 
 /* -- Strengths -- */
@@ -379,11 +350,11 @@ nav.site-nav .nav-links a:hover {
   width: 100%;
 }
 
-/* Kill Pico CSS ::after chevron and replace with our +/- */
-.case-study-card summary::after {
-  display: none !important;
-  content: none !important;
-  background-image: none !important;
+/* Kill Pico CSS ::after chevron (high specificity, no !important) */
+details.case-study-card > summary::after {
+  display: none;
+  content: none;
+  background-image: none;
 }
 
 .case-summary::after {
