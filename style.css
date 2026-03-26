@@ -358,13 +358,9 @@ nav.site-nav .nav-links a:hover {
   padding: 1.5rem 2rem;
   cursor: pointer;
   list-style: none;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: list-item;
 }
 
-/* Kill all browser default disclosure markers */
 .case-study-card summary::-webkit-details-marker {
   display: none;
 }
@@ -372,23 +368,34 @@ nav.site-nav .nav-links a:hover {
 .case-study-card summary::marker {
   display: none;
   content: '';
+  font-size: 0;
 }
 
-details.case-study-card > summary {
-  list-style: none;
+/* Wrapper for flex layout inside summary */
+.case-study-card summary .case-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
+/* Kill Pico CSS ::after chevron and replace with our +/- */
 .case-study-card summary::after {
+  display: none !important;
+  content: none !important;
+  background-image: none !important;
+}
+
+.case-summary::after {
   content: '+';
   font-size: 1.5rem;
   font-weight: 300;
   color: var(--color-teal);
   flex-shrink: 0;
   margin-left: 1rem;
-  transition: transform 0.2s ease;
 }
 
-.case-study-card[open] summary::after {
+.case-study-card[open] .case-summary::after {
   content: '\2212';
 }
 
